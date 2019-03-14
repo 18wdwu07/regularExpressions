@@ -1,21 +1,28 @@
 $(document).ready(function(){
-    console.log("Page Loaded");
+
+    $("#passwordTest").submit(function(e){
+        e.preventDefault();
+        var value = $("#password").val();
+        var checkUppercase =  RegExp("(?=.*[A-Z])\\\w+","g");
+        $(".message").remove();
+        if(checkUppercase.test(value) === true){
+            $("#passwordTest").append('<p class="message">Form has been submitted</p>');
+        } else {
+            $("#passwordTest").append('<p class="message">Error, there must be 1 Uppercase character</p>');
+        }
+    })
+
 
     var password = 'Testing123'
 
-    console.log(   /(?=.*[A-Z])\w+/g.test(password)      );
+    console.log(/(?=.*[A-Z])\w+/g.test(password));
 
-    var regularExpression = RegExp('(?=.*[A-Z])\w+', 'g');
+    // In JS the backslash \ character has a special meaning
+    // If you want to use it, then you have to include wrap a \ before and after the one you want to see
+
+    var regularExpression = RegExp("(?=.*[A-Z])\\\w+", 'g');
 
     console.log(regularExpression.test(password));
-
-
-    // Get the value from the password field
-    // check to see if value matches regex
-    // if true
-    //     process form
-    // if false
-    //     show error
 
 
 
